@@ -1,4 +1,5 @@
 import I18n from 'i18n-js';
+import memoize from 'lodash.memoize';
 import { I18nManager } from 'react-native';
 import en from './en.json';
 
@@ -12,8 +13,8 @@ I18nManager.allowRTL(false);
 
 I18n.locale = 'en'; //change it to any lang. eg: 'ar' for arabic and add ar.json file
 
-export function localizeString(name: string, params = {}) {
+export const localizeString = memoize((name: string, params = {}) => {
   return I18n.t(name, params);
-}
+});
 
 export default I18n;
