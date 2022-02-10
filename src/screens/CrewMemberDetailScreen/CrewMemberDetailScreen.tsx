@@ -7,7 +7,7 @@ import {
   requiredPermissionsIOS,
   requiredPermissionsAndroid,
   defaultGrantedPermissions,
-  permissionTypes,
+  allPermissions,
 } from '../../types/permissionTypes';
 import styles from './styles';
 
@@ -21,7 +21,7 @@ const CrewMemberDetailScreen: FC<CrewMemberDetailScreenProps> = ({
     requiredPermissionsIOS,
     requiredPermissionsAndroid,
     defaultGrantedPermissions,
-    permissionTypes,
+    allPermissions,
   );
 
   useLayoutEffect(() => {

@@ -12,14 +12,14 @@ import { localizeString } from 'i18n';
 import {
   GrantedPermissions,
   PermissionType,
-  PermissionTypes,
+  AllPermissions,
 } from '../types/permissionTypes';
 
 export default function usePermissions(
   requiredPermissionsIOS: Permission[],
   requiredPermissionsAndroid: Permission[],
   defaultGrantedPermissions: GrantedPermissions,
-  permissionTypes: PermissionTypes,
+  allPermissions: AllPermissions,
 ) {
   const [grantedPermissions, setGrantedPermissions] =
     useState<GrantedPermissions>(defaultGrantedPermissions);
@@ -39,7 +39,7 @@ export default function usePermissions(
     requiredPermissions.forEach(requiredPermission => {
       handlePermissionStatus(
         status[requiredPermission],
-        permissionTypes[requiredPermission],
+        allPermissions[requiredPermission],
       );
     });
   };

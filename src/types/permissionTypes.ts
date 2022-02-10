@@ -1,17 +1,6 @@
 import { Permission, PERMISSIONS } from 'react-native-permissions';
 
 export type PermissionType = 'camera' | 'photos' | 'appTracking';
-export type PermissionTypes = {
-  [key: string]: PermissionType;
-};
-
-export const permissionTypes: PermissionTypes = {
-  [PERMISSIONS.IOS.CAMERA]: 'camera',
-  [PERMISSIONS.ANDROID.CAMERA]: 'camera',
-  [PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE]: 'photos',
-  [PERMISSIONS.IOS.PHOTO_LIBRARY]: 'photos',
-  [PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY]: 'appTracking',
-};
 
 export const requiredPermissionsIOS: Permission[] = [
   PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY,
@@ -24,6 +13,18 @@ export const requiredPermissionsAndroid: Permission[] = [
   PERMISSIONS.ANDROID.RECORD_AUDIO,
   PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
 ];
+
+export type AllPermissions = {
+  [key: string]: PermissionType;
+};
+
+export const allPermissions: AllPermissions = {
+  [PERMISSIONS.IOS.CAMERA]: 'camera',
+  [PERMISSIONS.ANDROID.CAMERA]: 'camera',
+  [PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE]: 'photos',
+  [PERMISSIONS.IOS.PHOTO_LIBRARY]: 'photos',
+  [PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY]: 'appTracking',
+};
 
 export type GrantedPermissions = {
   [key in PermissionType]: boolean;
