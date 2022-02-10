@@ -37,6 +37,16 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSUserTrackingUsageDescription</key>
+  <string>We need access to track your activities on other apps to help direct contents suited for you</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access your camera to capture images and videos for sharing purposes</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need access your microphone to record your voice</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need access to your photo library to load media files</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to share media files</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
