@@ -7,7 +7,7 @@ export type MainStackParamList = {
   Home: undefined;
   Rockets: undefined;
   CrewMembers: undefined;
-  CrewMember: undefined;
+  CrewMemberDetail: undefined;
 };
 
 export type RootStackParamList = BottomTabParamList & MainStackParamList;

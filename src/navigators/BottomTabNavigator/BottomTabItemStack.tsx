@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/stack';
 import {
   CrewMembersScreen,
-  CrewMemberScreen,
+  CrewMemberDetailScreen,
   RocketsScreen,
 } from '../../screens';
 import { RootStackParamList } from '../navigation/navigationParamList';
@@ -20,7 +20,7 @@ const initialScreenOptions: StackNavigationOptions = {
       width: 0,
     },
   },
-  headerTitleAlign: 'left',
+  // headerTitleAlign: 'left',
 };
 
 const RocketsStack = () => {
@@ -43,7 +43,10 @@ const CrewMembersStack = () => {
         component={CrewMembersScreen}
         options={initialScreenOptions}
       />
-      <Stack.Screen name="CrewMember" component={CrewMemberScreen} />
+      <Stack.Screen
+        name="CrewMemberDetail"
+        component={CrewMemberDetailScreen}
+      />
     </Stack.Navigator>
   );
 };
