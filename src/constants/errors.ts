@@ -8,10 +8,10 @@ const unknown: ToastOption = {
   text2: localizeString('An_unknwon_error_occrred_please_try_again_later'),
 };
 
-const network_failed: ToastOption = {
+const internet_connection_failed: ToastOption = {
   type: 'error',
   position: 'bottom',
-  text1: localizeString('No_Internet_Connection'),
+  text1: localizeString('No_internet_connection'),
 };
 
 const feed_failed: ToastOption = {
@@ -23,7 +23,7 @@ const feed_failed: ToastOption = {
 
 export default {
   unknown,
-  network_failed,
+  internet_connection_failed,
   feed_failed,
   custom: (
     text1?: string,
