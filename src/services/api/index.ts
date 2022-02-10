@@ -4,26 +4,25 @@ import api from './config';
 async function makeAPIRequest(
   method: 'get' | 'put' | 'post',
   endPoint: string,
-  body?: AxiosRequestConfig,
+  config?: AxiosRequestConfig,
 ) {
-  try {
-    const response = await api[method](endPoint, body);
+  const response = await api[method](endPoint, config);
 
-    return { ...response, success: true };
-  } catch (error) {
-    console.warn(error);
-    return { error, success: false };
-  }
+  return { ...response, success: true };
 }
 
-export const fetchRockets = () => {
+export const fetchRockets = (params?: object) => {
   const endPoint = '/rockets';
 
-  return makeAPIRequest('get', endPoint);
+  return makeAPIRequest('get', endPoint, {
+    params,
+  });
 };
 
-export const fetchcrew = () => {
+export const fetchcrew = (params?: object) => {
   const endPoint = '/crew';
 
-  return makeAPIRequest('get', endPoint);
+  return makeAPIRequest('get', endPoint, {
+    params,
+  });
 };
