@@ -27,12 +27,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
   },
-  visitLink: {
-    paddingTop: 5,
-    fontSize: 16,
-    fontWeight: '400',
-    color: 'blue',
-  },
 });
 
 export default styles;

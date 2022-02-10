@@ -32,8 +32,7 @@ const CrewMemberDetailScreen: FC<CrewMemberDetailScreenProps> = ({
 
   useEffect(() => {
     checkPermissions();
-
-    //eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!grantedAllPermissions) {
@@ -48,7 +47,6 @@ const CrewMemberDetailScreen: FC<CrewMemberDetailScreenProps> = ({
       <View style={styles.detailContainer}>
         <Text style={styles.agency}>{crewMember.agency}</Text>
         <Text style={styles.status}>{crewMember.status}</Text>
-        {/* <Text style={styles.visitLink}>{'Visit wikipedia page'}</Text> */}
       </View>
     </View>
   );
