@@ -45,6 +45,9 @@ const CrewMembersStack = () => {
       />
       <Stack.Screen
         name="CrewMemberDetail"
+        options={{
+          headerBackTitleVisible: false,
+        }}
         component={CrewMemberDetailScreen}
       />
     </Stack.Navigator>

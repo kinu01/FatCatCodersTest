@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   },
   avatarContainer: {
     flex: 1,
+    backgroundColor: '#f0f0f0',
   },
   avatar: {
     width: '100%',

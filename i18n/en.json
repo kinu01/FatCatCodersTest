@@ -11,5 +11,9 @@
   "Could_not_Load_Rockets": "Couldn't Load Rockets",
   "Could_not_Load_Crews": "Couldn't Load Crews",
   "Rockets": "Rockets",
-  "Crew_Members": "Crew Members"
+  "Crew_Members": "Crew Members",
+  "Error_occured_while_checking_permission_status": "Error occured while checking permission status",
+  "An_error_occured_while_checking_permission_status": "An error occured while checking permission status",
+  "Error_occured_while_requesting_permission": "Error occured while requesting permission",
+  "An_error_occured_while_requesting_permission": "An error occured while requesting permission"
 }

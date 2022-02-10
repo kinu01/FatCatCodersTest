@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   rocketImage: {
     width: imageWidth,
     height: imageHeight,
+    backgroundColor: '#f0f0f0',
   },
   name: {
     paddingTop: 5,

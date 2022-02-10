@@ -4,94 +4,101 @@ import {
   checkMultiple,
   requestMultiple,
   Permission,
-  PERMISSIONS,
   RESULTS,
   openSettings,
+  PermissionStatus,
 } from 'react-native-permissions';
 import { localizeString } from 'i18n';
+import {
+  GrantedPermissions,
+  PermissionType,
+  PermissionTypes,
+} from '../types/permissionTypes';
 
-type PermissionType = 'camera' | 'mic' | 'photos' | 'appTracking';
+export default function usePermissions(
+  requiredPermissionsIOS: Permission[],
+  requiredPermissionsAndroid: Permission[],
+  defaultGrantedPermissions: GrantedPermissions,
+  permissionTypes: PermissionTypes,
+) {
+  const [grantedPermissions, setGrantedPermissions] =
+    useState<GrantedPermissions>(defaultGrantedPermissions);
 
-export default function usePermissions() {
-  const [grantedPermissions, setGrantedPermissions] = useState<{
-    camera: boolean;
-    mic: boolean;
-    photos: boolean;
-  }>({
-    camera: false,
-    mic: false,
-    photos: false,
-  });
-
-  const requiredPermissionsIOS = useRef<Permission[]>([
-    PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY,
-    PERMISSIONS.IOS.CAMERA,
-    PERMISSIONS.IOS.MICROPHONE,
-    PERMISSIONS.IOS.PHOTO_LIBRARY,
-  ]).current;
-  const requiredPermissionsAndroid = useRef<Permission[]>([
-    PERMISSIONS.ANDROID.CAMERA,
-    PERMISSIONS.ANDROID.RECORD_AUDIO,
-    PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
-  ]).current;
-  const permissionTypes = useRef<{
-    [key: string]: PermissionType;
-  }>({
-    [PERMISSIONS.IOS.CAMERA]: 'camera',
-    [PERMISSIONS.ANDROID.CAMERA]: 'camera',
-    [PERMISSIONS.IOS.MICROPHONE]: 'mic',
-    [PERMISSIONS.ANDROID.RECORD_AUDIO]: 'mic',
-    [PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE]: 'photos',
-    [PERMISSIONS.IOS.PHOTO_LIBRARY]: 'photos',
-    [PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY]: 'appTracking',
-  }).current;
   const hasRequestedOpenSettings = useRef<boolean>(false);
 
   const grantedAllPermissions = Object.values(grantedPermissions).every(
     isGranted => isGranted,
   );
 
-  const checkPermissions = () => {
-    if (Platform.OS === 'ios') {
-      checkMultiplePermissions(requiredPermissionsIOS);
-    } else {
-      checkMultiplePermissions(requiredPermissionsAndroid);
+  const readPermissionStatus = (
+    requiredPermissions: Permission[],
+    status: Record<Permission, PermissionStatus>,
+  ) => {
+    // For each required permissions requested or checked,
+    // we handle the current permission status
+    requiredPermissions.forEach(requiredPermission => {
+      handlePermissionStatus(
+        status[requiredPermission],
+        permissionTypes[requiredPermission],
+      );
+    });
+  };
+
+  // check required permissions
+  const checkPermissions = async () => {
+    const requiredPermissions =
+      Platform.select({
+        ios: requiredPermissionsIOS,
+        android: requiredPermissionsAndroid,
+      }) ?? [];
+
+    try {
+      // we check the status of the required permissions
+      const status = await checkMultiple(requiredPermissions);
+
+      // we read the statuses of the checked permissions
+      readPermissionStatus(requiredPermissions, status);
+    } catch (error) {
+      console.warn(error);
+      Alert.alert(
+        localizeString('Error_occured_while_checking_permission_status'),
+        localizeString('An_error_occured_while_checking_permission_status'),
+      );
     }
   };
 
-  const checkMultiplePermissions = (requiredPermissions: Permission[]) => {
-    checkMultiple(requiredPermissions).then(statuses => {
-      requiredPermissions.forEach(requiredPermission => {
-        readPermissionResponse(
-          statuses[requiredPermission],
-          permissionTypes[requiredPermission],
-        );
-      });
-    });
+  const requestPermissions = async (requiredPermissions: Permission[]) => {
+    try {
+      // we request the required permissions
+      const status = await requestMultiple(requiredPermissions);
+
+      // we read the statuses of the requested permissions
+      readPermissionStatus(requiredPermissions, status);
+    } catch (error) {
+      console.warn(error);
+      Alert.alert(
+        localizeString('Error_occured_while_requesting_permission'),
+        localizeString('An_error_occured_while_requesting_permission'),
+      );
+    }
   };
 
-  const requestMultiplePermissions = (requiredPermissions: Permission[]) => {
-    requestMultiple(requiredPermissions).then(statuses => {
-      requiredPermissions.forEach(requiredPermission => {
-        readPermissionResponse(
-          statuses[requiredPermission],
-          permissionTypes[requiredPermission],
-        );
-      });
-    });
-  };
-
-  const readPermissionResponse = (result: string, type: PermissionType) => {
-    const isRequestable = result === RESULTS.DENIED;
-    const notRequestable = result === RESULTS.BLOCKED;
-    const granted = result === RESULTS.GRANTED;
+  // we either request previously unrequested permission, or
+  // we alert user to open settings to grant permission that can no longer be requested, or
+  // we set granted permission type to true
+  const handlePermissionStatus = (status: string, type: PermissionType) => {
+    const isRequestable = status === RESULTS.DENIED;
+    const notRequestable = status === RESULTS.BLOCKED;
+    const granted = status === RESULTS.GRANTED;
 
     if (isRequestable) {
-      if (Platform.OS === 'ios') {
-        requestMultiplePermissions(requiredPermissionsIOS);
-        return;
-      }
-      requestMultiplePermissions(requiredPermissionsAndroid);
+      const requiredPermissions =
+        Platform.select({
+          ios: requiredPermissionsIOS,
+          android: requiredPermissionsAndroid,
+        }) ?? [];
+
+      requestPermissions(requiredPermissions);
       return;
     }
 
