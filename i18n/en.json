@@ -1,0 +1,7 @@
+{
+  "Cancel": "Cancel",
+  "Change_type_permission": "Change %{type} permission",
+  "Do_you_want_to_change_permission_to_access_type": "Do you want to change permission to access %{type}?",
+  "Yes": "Yes",
+  "No": "No"
+}
