@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { localizeString } from 'i18n';
 import { BottomTabParamList } from '../navigation/navigationParamList';
 import { CrewMembersStack, RocketsStack } from './BottomTabItemStack';
 
@@ -14,14 +15,14 @@ export default function BottomTabNavigator() {
       }}>
       <Tab.Screen
         options={{
-          title: 'Rockets',
+          title: localizeString('Rockets'),
         }}
         name="RocketsStack"
         component={RocketsStack}
       />
       <Tab.Screen
         options={{
-          title: 'Crew Members',
+          title: localizeString('Crew_Members'),
         }}
         name="CrewMembersStack"
         component={CrewMembersStack}

@@ -11,7 +11,7 @@ export type CrewMemberScreenProps = StackScreenProps<
   'CrewMembers'
 >;
 
-export type CrewMembeScreenProps = StackScreenProps<
+export type CrewMemberDetailScreenProps = StackScreenProps<
   RootStackParamList,
-  'CrewMember'
+  'CrewMemberDetail'
 >;

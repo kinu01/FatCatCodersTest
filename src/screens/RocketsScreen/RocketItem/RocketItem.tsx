@@ -16,7 +16,7 @@ const RocketItem: FC<RocketItemProps> = ({ item }) => {
           source={{
             uri: item.flickr_images[0],
           }}
-          style={styles.image}
+          style={styles.rocketImage}
         />
       )}
       <Text style={styles.name}>{item.name}</Text>

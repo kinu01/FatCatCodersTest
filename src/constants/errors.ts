@@ -18,14 +18,14 @@ const internet_connection_failed: ToastOption = {
 const rockets_failed: ToastOption = {
   type: 'error',
   position: 'bottom',
-  text1: localizeString('Could_not_Refresh_Rockets'),
+  text1: localizeString('Could_not_Load_Rockets'),
   text2: '',
 };
 
 const crew_failed: ToastOption = {
   type: 'error',
   position: 'bottom',
-  text1: localizeString('Could_not_Refresh_Crews'),
+  text1: localizeString('Could_not_Load_Crews'),
   text2: '',
 };
 

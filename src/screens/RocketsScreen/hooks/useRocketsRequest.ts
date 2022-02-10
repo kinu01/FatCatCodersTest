@@ -19,6 +19,7 @@ const useRocketsRequest = () => {
       setRockets(res.data as Rocket[]);
       setLoading(false);
     } catch (error) {
+      console.warn(error);
       setLoading(false);
       Toast.show(errors.rockets_failed);
     }

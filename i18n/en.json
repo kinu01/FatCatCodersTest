@@ -8,6 +8,8 @@
   "An_unknwon_error_occrred_please_try_again_later": "An unknwon error occrred, please try again later.",
   "No_internet_connection": "No internet connection",
   "Please_ensure_that_you_are_connected_to_the_internet": "Please ensure that you are connected to the internet",
-  "Could_not_Refresh_Rockets": "Couldn't Refresh Rockets",
-  "Could_not_Refresh_Crews": "Couldn't Refresh Crews"
+  "Could_not_Load_Rockets": "Couldn't Load Rockets",
+  "Could_not_Load_Crews": "Couldn't Load Crews",
+  "Rockets": "Rockets",
+  "Crew_Members": "Crew Members"
 }
