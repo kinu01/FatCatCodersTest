@@ -19,14 +19,12 @@ const rockets_failed: ToastOption = {
   type: 'error',
   position: 'bottom',
   text1: localizeString('Could_not_Load_Rockets'),
-  text2: '',
 };
 
 const crew_failed: ToastOption = {
   type: 'error',
   position: 'bottom',
   text1: localizeString('Could_not_Load_Crews'),
-  text2: '',
 };
 
 export default {
