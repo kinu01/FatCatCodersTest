@@ -20,7 +20,6 @@ const initialScreenOptions: StackNavigationOptions = {
       width: 0,
     },
   },
-  // headerTitleAlign: 'left',
 };
 
 const RocketsStack = () => {
