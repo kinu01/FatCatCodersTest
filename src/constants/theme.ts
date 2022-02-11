@@ -4,6 +4,7 @@ export const COLORS = {
   mainDarkTextColor: '#062242',
   mainLightTextColor: '#fff',
   mainSubTextColor: '#a5b0bd',
+  grey: '#f0f0f0',
 };
 
 export const SIZES = {

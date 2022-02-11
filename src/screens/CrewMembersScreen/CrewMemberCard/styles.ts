@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { COLORS } from '../../../constants/theme';
 
 const WIDTH = Dimensions.get('window').width;
 const containerWidth = Math.floor(WIDTH * 0.5);
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
   },
   avatarContainer: {
     flex: 1,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: COLORS.grey,
   },
   avatar: {
     width: '100%',

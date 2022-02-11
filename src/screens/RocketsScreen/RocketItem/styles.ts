@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { COLORS } from '../../../constants/theme';
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -12,12 +13,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 3,
     marginVertical: 6,
     alignSelf: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.mainBackgroundColor,
   },
   rocketImage: {
     width: imageWidth,
     height: imageHeight,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: COLORS.grey,
   },
   name: {
     paddingTop: 5,
