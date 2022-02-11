@@ -15,5 +15,8 @@
   "Error_occured_while_checking_permission_status": "Error occured while checking permission status",
   "An_error_occured_while_checking_permission_status": "An error occured while checking permission status",
   "Error_occured_while_requesting_permission": "Error occured while requesting permission",
-  "An_error_occured_while_requesting_permission": "An error occured while requesting permission"
+  "An_error_occured_while_requesting_permission": "An error occured while requesting permission",
+  "Permission_required": "Permission required",
+  "Please_grant_the_required_permissions_to_see_crew_details": "Please grant the required permissions to see crew details",
+  "Grant_permission": "Grant permission"
 }

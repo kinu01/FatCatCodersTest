@@ -1,6 +1,8 @@
+import { localizeString } from 'i18n';
 import React, { FC, useLayoutEffect, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import { EmptyState } from '../../components';
 import usePermissions from '../../hooks/usePermissions';
 import { CrewMemberDetailScreenProps } from '../../navigators/navigation/navigationScreenProps';
 import {
@@ -17,7 +19,7 @@ const CrewMemberDetailScreen: FC<CrewMemberDetailScreenProps> = ({
 }) => {
   const crewMember = route.params.crewMember;
 
-  const { grantedAllPermissions, checkPermissions } = usePermissions(
+  const { loading, grantedAllPermissions, checkPermissions } = usePermissions(
     requiredPermissionsIOS,
     requiredPermissionsAndroid,
     defaultGrantedPermissions,
@@ -35,8 +37,21 @@ const CrewMemberDetailScreen: FC<CrewMemberDetailScreenProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (loading) {
+    return <ActivityIndicator style={styles.activityContainer} />;
+  }
+
   if (!grantedAllPermissions) {
-    return <View style={styles.container} />;
+    return (
+      <EmptyState
+        title={localizeString('Permission_required')}
+        subtitle={localizeString(
+          'Please_grant_the_required_permissions_to_see_crew_details',
+        )}
+        buttonTitle={localizeString('Grant_permission')}
+        onButtonPress={checkPermissions}
+      />
+    );
   }
 
   return (

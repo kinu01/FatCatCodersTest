@@ -23,6 +23,7 @@ export default function usePermissions(
 ) {
   const [grantedPermissions, setGrantedPermissions] =
     useState<GrantedPermissions>(defaultGrantedPermissions);
+  const [loading, setLoading] = useState(true);
 
   const hasRequestedOpenSettings = useRef<boolean>(false);
 
@@ -58,12 +59,14 @@ export default function usePermissions(
 
       // we read the statuses of the checked permissions
       readPermissionStatus(requiredPermissions, status);
+      setLoading(false);
     } catch (error) {
       console.warn(error);
       Alert.alert(
         localizeString('Error_occured_while_checking_permission_status'),
         localizeString('An_error_occured_while_checking_permission_status'),
       );
+      setLoading(false);
     }
   };
 
@@ -148,5 +151,5 @@ export default function usePermissions(
     hasRequestedOpenSettings.current = false;
   };
 
-  return { grantedAllPermissions, checkPermissions };
+  return { loading, grantedAllPermissions, checkPermissions };
 }
