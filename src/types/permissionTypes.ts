@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { Permission, PERMISSIONS } from 'react-native-permissions';
 
 export type PermissionType = 'camera' | 'photos' | 'appTracking';
@@ -27,11 +28,18 @@ export const allPermissions: AllPermissions = {
 };
 
 export type GrantedPermissions = {
-  [key in PermissionType]: boolean;
+  [key in PermissionType]?: boolean;
 };
 
-export const defaultGrantedPermissions: GrantedPermissions = {
-  camera: false,
-  photos: false,
-  appTracking: false,
-};
+export const defaultGrantedPermissions: GrantedPermissions =
+  Platform.select({
+    ios: {
+      camera: false,
+      photos: false,
+      appTracking: false,
+    },
+    android: {
+      camera: false,
+      photos: false,
+    },
+  }) ?? {};
