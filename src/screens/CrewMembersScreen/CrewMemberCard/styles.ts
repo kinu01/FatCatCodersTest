@@ -42,10 +42,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: 'center',
     fontWeight: '600',
+    color: COLORS.mainDarkTextColor,
   },
   agency: {
     textAlign: 'center',
     fontSize: 12,
+    color: COLORS.mainDarkTextColor,
   },
 });
 

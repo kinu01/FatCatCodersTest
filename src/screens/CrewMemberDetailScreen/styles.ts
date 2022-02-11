@@ -28,11 +28,13 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     fontSize: 18,
     fontWeight: '600',
+    color: COLORS.mainDarkTextColor,
   },
   status: {
     paddingTop: 5,
     fontSize: 16,
     fontWeight: '400',
+    color: COLORS.mainDarkTextColor,
   },
 });
 

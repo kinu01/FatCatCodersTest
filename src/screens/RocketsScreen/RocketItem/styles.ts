@@ -23,10 +23,12 @@ const styles = StyleSheet.create({
   name: {
     paddingTop: 5,
     fontWeight: '600',
+    color: COLORS.mainDarkTextColor,
   },
   description: {
     paddingTop: 5,
     lineHeight: 20,
+    color: COLORS.mainDarkTextColor,
   },
 });
 
