@@ -1,14 +1,14 @@
 import { localizeString } from 'i18n';
-import React, { FC, useLayoutEffect } from 'react';
+import React, { FC, useLayoutEffect, useCallback } from 'react';
 import { ActivityIndicator, FlatList, ListRenderItem } from 'react-native';
+import useFetchRequest from '../../hooks/useFetchRequest';
 import { CrewMemberScreenProps } from '../../navigators/navigation/navigationScreenProps';
 import { Crew } from '../../types/crewTypes';
 import CrewMemberCard from './CrewMemberCard/CrewMemberCard';
-import useCrewRequest from './hooks/useCrewRequest';
 import styles from './styles';
 
 const CrewMembersScreen: FC<CrewMemberScreenProps> = ({ navigation }) => {
-  const { crew, loading } = useCrewRequest();
+  const { list, loading } = useFetchRequest('/crew');
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -16,8 +16,17 @@ const CrewMembersScreen: FC<CrewMemberScreenProps> = ({ navigation }) => {
     });
   }, [navigation]);
 
+  const onCardPress = useCallback<(item: Crew) => void>(
+    item => {
+      navigation.navigate('CrewMemberDetail', { crewMember: item });
+    },
+    [navigation],
+  );
+
   const renderItem: ListRenderItem<Crew> = ({ item }) => {
-    return <CrewMemberCard key={item.id} item={item} />;
+    return (
+      <CrewMemberCard key={item.id} item={item} onCardPress={onCardPress} />
+    );
   };
 
   if (loading) {
@@ -27,7 +36,7 @@ const CrewMembersScreen: FC<CrewMemberScreenProps> = ({ navigation }) => {
   return (
     <FlatList
       style={styles.container}
-      data={crew}
+      data={list as Crew[]}
       keyExtractor={(item, index) => item?.id ?? index.toString()}
       renderItem={renderItem}
       numColumns={2}

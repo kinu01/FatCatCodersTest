@@ -1,23 +1,19 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { navigate } from '../../../navigators/navigation/RootNavigation';
 import { Crew } from '../../../types/crewTypes';
 import styles from './styles';
 
 interface CrewMemberCardProps {
   item: Crew;
+  onCardPress?: (item: Crew) => void;
 }
 
-const CrewMemberCard: FC<CrewMemberCardProps> = ({ item }) => {
-  const onCardPress = () => {
-    navigate('CrewMemberDetail', { crewMember: item });
-  };
-
+const CrewMemberCard: FC<CrewMemberCardProps> = ({ item, onCardPress }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      onPress={onCardPress}
+      onPress={() => onCardPress?.(item)}
       style={styles.container}>
       <View style={styles.cardContainer}>
         <View style={styles.avatarContainer}>
@@ -39,4 +35,4 @@ const CrewMemberCard: FC<CrewMemberCardProps> = ({ item }) => {
   );
 };
 
-export default CrewMemberCard;
+export default memo(CrewMemberCard);

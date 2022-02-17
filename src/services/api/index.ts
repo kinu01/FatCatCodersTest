@@ -1,6 +1,8 @@
 import { AxiosRequestConfig } from 'axios';
 import api from './config';
 
+export type EndPoint = '/rockets' | '/crew';
+
 async function makeAPIRequest(
   method: 'get' | 'put' | 'post',
   endPoint: string,
@@ -8,20 +10,10 @@ async function makeAPIRequest(
 ) {
   const response = await api[method](endPoint, config);
 
-  return { ...response, success: true };
+  return response;
 }
 
-export const fetchRockets = (params?: object) => {
-  const endPoint = '/rockets';
-
-  return makeAPIRequest('get', endPoint, {
-    params,
-  });
-};
-
-export const fetchcrew = (params?: object) => {
-  const endPoint = '/crew';
-
+export const fetchRequest = (endPoint: EndPoint, params?: object) => {
   return makeAPIRequest('get', endPoint, {
     params,
   });

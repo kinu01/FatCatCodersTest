@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { Alert, Platform } from 'react-native';
 import {
   checkMultiple,
@@ -27,8 +27,9 @@ export default function usePermissions(
 
   const hasRequestedOpenSettings = useRef<boolean>(false);
 
-  const grantedAllPermissions = Object.values(grantedPermissions).every(
-    isGranted => isGranted,
+  const grantedAllPermissions = useMemo(
+    () => Object.values(grantedPermissions).every(isGranted => isGranted),
+    [grantedPermissions],
   );
 
   const readPermissionStatus = (

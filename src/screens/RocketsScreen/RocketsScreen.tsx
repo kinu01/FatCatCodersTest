@@ -1,14 +1,14 @@
 import { localizeString } from 'i18n';
 import React, { FC, useLayoutEffect } from 'react';
 import { ActivityIndicator, FlatList, ListRenderItem } from 'react-native';
+import useFetchRequest from '../../hooks/useFetchRequest';
 import { RocketsScreenProps } from '../../navigators/navigation/navigationScreenProps';
 import { Rocket } from '../../types/rocketTypes';
-import useRocketsRequest from './hooks/useRocketsRequest';
 import RocketItem from './RocketItem/RocketItem';
 import styles from './styles';
 
 const RocketsScreen: FC<RocketsScreenProps> = ({ navigation }) => {
-  const { rockets, loading } = useRocketsRequest();
+  const { list, loading } = useFetchRequest('/rockets');
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -27,7 +27,7 @@ const RocketsScreen: FC<RocketsScreenProps> = ({ navigation }) => {
   return (
     <FlatList
       style={styles.container}
-      data={rockets}
+      data={list as Rocket[]}
       keyExtractor={(item, index) => item?.id ?? index.toString()}
       renderItem={renderItem}
       showsVerticalScrollIndicator={false}
