@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { View, Text } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Rocket } from '../../../types/rocketTypes';
@@ -27,4 +27,4 @@ const RocketItem: FC<RocketItemProps> = ({ item }) => {
   );
 };
 
-export default RocketItem;
+export default memo(RocketItem);
